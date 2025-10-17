@@ -142,7 +142,7 @@ public struct BigNum
 
     public string ToString(int decimals = 2)
     {
-        if (m == 0) return "0";
+        if (m == 0) return "0,00";
 
         int suffixIndex = e / 3;
         int remainder = e % 3;
