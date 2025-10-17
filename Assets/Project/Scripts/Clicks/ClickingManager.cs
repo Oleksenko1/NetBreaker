@@ -15,7 +15,7 @@ public class ClickingManager : MonoBehaviour
     {
         bitsBalance.AddBits(clickingStats.GetBitsPerClick());
 
-        Debug.Log("Balance: " + bitsBalance.GetCurrentBalance());
+        Debug.Log("Balance: " + bitsBalance.GetCurrentBalance().ToString());
     }
     public ClickingStats GetClickingStats() => clickingStats;
 }

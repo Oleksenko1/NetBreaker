@@ -2,13 +2,13 @@ public class ClickingStats
 {
     public ClickingStats()
     {
-        bitsPerClick = 1;
-        bitsPerSecond = 0;
+        bitsPerClick = new BigNum(1);
+        bitsPerSecond = new BigNum(0);
     }
-    private int bitsPerClick;
-    private int bitsPerSecond;
-    public void AddBitsPerClick(int x) => bitsPerClick += x;
-    public void AddBitsPerSecond(int x) => bitsPerSecond += x;
-    public int GetBitsPerClick() => bitsPerClick;
-    public int GetBitsPerSecond() => bitsPerSecond;
+    private BigNum bitsPerClick;
+    private BigNum bitsPerSecond;
+    public void AddBitsPerClick(BigNum x) => bitsPerClick += x;
+    public void AddBitsPerSecond(BigNum x) => bitsPerSecond += x;
+    public BigNum GetBitsPerClick() => bitsPerClick;
+    public BigNum GetBitsPerSecond() => bitsPerSecond;
 }
