@@ -132,10 +132,10 @@ TextureImporter:
       name: BitCurrency_0
       rect:
         serializedVersion: 2
-        x: 67
-        y: 267
-        width: 378
-        height: 227
+        x: 56
+        y: 262
+        width: 400
+        height: 249
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,10 +154,10 @@ TextureImporter:
       name: BitCurrency_1
       rect:
         serializedVersion: 2
-        x: 67
-        y: 18
-        width: 378
-        height: 227
+        x: 56
+        y: 1
+        width: 400
+        height: 249
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
