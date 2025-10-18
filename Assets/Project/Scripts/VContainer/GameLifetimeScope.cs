@@ -12,6 +12,7 @@ public class GameLifetimeScope : LifetimeScope
     {
         builder.Register<BitsBalance>(Lifetime.Singleton);
         builder.Register<PassiveClickerManager>(Lifetime.Singleton);
+        builder.Register<BitsIncomeTracker>(Lifetime.Singleton);
         builder.RegisterComponent(clickingManager).AsSelf();
     }
     async void Start()
@@ -21,5 +22,6 @@ public class GameLifetimeScope : LifetimeScope
         Container.Inject(uIBitsBalance);
 
         Container.Resolve<PassiveClickerManager>();
+        Container.Resolve<BitsIncomeTracker>();
     }
 }

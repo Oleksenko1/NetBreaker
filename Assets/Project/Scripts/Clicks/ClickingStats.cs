@@ -3,7 +3,7 @@ public class ClickingStats
     public ClickingStats()
     {
         bitsPerClick = new BigNum(1);
-        bitsPerSecond = new BigNum(0);
+        bitsPerSecond = new BigNum(1);
     }
     private BigNum bitsPerClick;
     private BigNum bitsPerSecond;
