@@ -14,8 +14,11 @@ public class ClickingManager : MonoBehaviour
     private void OnClickPressed(ClickPressed_event e)
     {
         bitsBalance.AddBits(clickingStats.GetBitsPerClick());
-
-        Debug.Log("Balance: " + bitsBalance.GetCurrentBalance().ToString());
     }
     public ClickingStats GetClickingStats() => clickingStats;
+    [ContextMenu("Increase bits per second")]
+    private void Increase()
+    {
+        clickingStats.AddBitsPerSecond(new BigNum(1));
+    }
 }

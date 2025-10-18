@@ -11,6 +11,7 @@ public class GameLifetimeScope : LifetimeScope
     protected override void Configure(IContainerBuilder builder)
     {
         builder.Register<BitsBalance>(Lifetime.Singleton);
+        builder.Register<PassiveClickerManager>(Lifetime.Singleton);
         builder.RegisterComponent(clickingManager).AsSelf();
     }
     async void Start()
@@ -18,5 +19,7 @@ public class GameLifetimeScope : LifetimeScope
         Container.Inject(clickingManager);
         Container.Inject(clickPopupManager);
         Container.Inject(uIBitsBalance);
+
+        Container.Resolve<PassiveClickerManager>();
     }
 }
