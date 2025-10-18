@@ -2,13 +2,15 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System;
 using VContainer;
+
 public class BitsIncomeTracker : IDisposable
 {
     private readonly ClickingStats clickingStats;
     private BitsIncomeTrackerUpdated_event trackerUpdated_Event;
-    private float tickUpdateDelay = 0.5f; // In seconds
+    private float tickUpdateDelay = 1f; // In seconds
+
     private int clicksCount;
-    private double clicksPerSecond;
+
     [Inject]
     public BitsIncomeTracker(ClickingManager clickingManager)
     {
@@ -19,24 +21,24 @@ public class BitsIncomeTracker : IDisposable
 
         StartTrackingLoop().Forget();
     }
+
     private void OnClickPressed(ClickPressed_event e)
     {
         clicksCount++;
     }
+
     private async UniTaskVoid StartTrackingLoop()
     {
         while (true)
         {
             await UniTask.Delay(TimeSpan.FromSeconds(tickUpdateDelay));
 
-            clicksPerSecond = clicksCount / tickUpdateDelay;
-
-            BigNum clickedBitsPerSecond = new BigNum(clicksPerSecond) * clickingStats.GetBitsPerClick();
+            BigNum clickedBitsPerSecond = new BigNum(clicksCount) * clickingStats.GetBitsPerClick();
             BigNum passiveBitsPerSecond = clickingStats.GetBitsPerSecond();
 
             BigNum totalBitsPerSecond = clickedBitsPerSecond + passiveBitsPerSecond;
 
-            Debug.Log(totalBitsPerSecond.ToString());
+            Debug.Log($"CPS: {clicksCount}, Total BPS: {totalBitsPerSecond}");
 
             trackerUpdated_Event.bitsPerSecond = totalBitsPerSecond;
             EventBus.Publish(trackerUpdated_Event);
@@ -44,6 +46,7 @@ public class BitsIncomeTracker : IDisposable
             clicksCount = 0;
         }
     }
+
     public void Dispose()
     {
         EventBus.Unsubscribe<ClickPressed_event>(OnClickPressed);
