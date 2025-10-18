@@ -7,6 +7,8 @@ public class UpgradeSO : ScriptableObject
     public string nameLabel;
     public string uniqueName;
     public Sprite sprite;
+    [Multiline(3)]
+    public string description;
     public double startingPrice;
     public double priceIncrement;
     public List<UpgradeTypeValue> upgradeTypeValues;
