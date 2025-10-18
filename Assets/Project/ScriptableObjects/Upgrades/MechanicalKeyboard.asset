@@ -15,6 +15,7 @@ MonoBehaviour:
   nameLabel: Mechanical keyboard
   uniqueName: MechanicalKeyboard
   sprite: {fileID: 8498334219677705280, guid: bfa7977e5416b3c40a4f2308ae065804, type: 3}
+  description: +3 bits per click
   startingPrice: 500
   priceIncrement: 1.15
   upgradeTypeValues:

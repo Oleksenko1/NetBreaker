@@ -15,6 +15,7 @@ MonoBehaviour:
   nameLabel: Mechanical mouse
   uniqueName: MechanicalMouse
   sprite: {fileID: -357421434760999972, guid: 8e068e6a341d8ca4f824e82b78729a4e, type: 3}
+  description: +1 bit per click
   startingPrice: 15
   priceIncrement: 1.15
   upgradeTypeValues:

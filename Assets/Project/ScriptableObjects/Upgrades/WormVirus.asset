@@ -15,6 +15,7 @@ MonoBehaviour:
   nameLabel: Worm virua
   uniqueName: WormVirus
   sprite: {fileID: 1195704854996624832, guid: a9143e5ab131f1c4a9b8f7016c0df1f9, type: 3}
+  description: +8 bits/sec
   startingPrice: 1500
   priceIncrement: 1.15
   upgradeTypeValues:

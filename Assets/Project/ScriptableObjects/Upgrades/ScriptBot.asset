@@ -15,6 +15,7 @@ MonoBehaviour:
   nameLabel: Script bot
   uniqueName: ScriptBot
   sprite: {fileID: -2278012308645443460, guid: 2a31f6bce893ad644969da5513b0f00a, type: 3}
+  description: +1 bit/sec
   startingPrice: 100
   priceIncrement: 1.15
   upgradeTypeValues:
