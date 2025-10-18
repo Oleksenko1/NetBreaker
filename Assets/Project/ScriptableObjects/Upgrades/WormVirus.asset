@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc55bb4d550db44685dddd17618668e, type: 3}
+  m_Name: WormVirus
+  m_EditorClassIdentifier: 
+  nameLabel: Worm virua
+  uniqueName: WormVirus
+  sprite: {fileID: 1195704854996624832, guid: a9143e5ab131f1c4a9b8f7016c0df1f9, type: 3}
+  startingPrice: 1500
+  priceIncrement: 1.15
+  upgradeTypeValues:
+  - type: 1
+    value: 8

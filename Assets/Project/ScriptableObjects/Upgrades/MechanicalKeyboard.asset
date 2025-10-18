@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc55bb4d550db44685dddd17618668e, type: 3}
+  m_Name: MechanicalKeyboard
+  m_EditorClassIdentifier: 
+  nameLabel: Mechanical keyboard
+  uniqueName: MechanicalKeyboard
+  sprite: {fileID: 8498334219677705280, guid: bfa7977e5416b3c40a4f2308ae065804, type: 3}
+  startingPrice: 500
+  priceIncrement: 1.15
+  upgradeTypeValues:
+  - type: 0
+    value: 3
