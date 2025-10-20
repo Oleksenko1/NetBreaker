@@ -19,9 +19,29 @@ public class UIUpgradePanelUnit : MonoBehaviour
 
         upgradeNameTxt.SetText(upgradeSO.nameLabel);
         descriptionTxt.SetText(upgradeSO.description);
-        levelAmountTxt.SetText(0.ToString());
-        priceTxt.SetText(upgradeSO.startingPrice + " <sprite=0>");
         iconImg.sprite = upgradeSO.sprite;
-        purchaseBtn.onClick.AddListener(() => Debug.Log($"Buy btn of {upgradeSO.uniqueName} upgrade pressed"));
+        purchaseBtn.onClick.AddListener(TryPurchasing);
+
+        UpdateCostLevelInfo();
+    }
+    public void TryPurchasing()
+    {
+        bool success = upgradesManager.TryBuyingUpgrade(upgradeSO);
+
+        if (success)
+        {
+            Debug.Log("Purchase successful");
+
+            UpdateCostLevelInfo();
+        }
+        else
+        {
+            Debug.Log("Not enough money");
+        }
+    }
+    private void UpdateCostLevelInfo()
+    {
+        levelAmountTxt.SetText(upgradesManager.GetUpgradeLevel(upgradeSO).ToString());
+        priceTxt.SetText(upgradesManager.GetUpgradeCost(upgradeSO) + " <sprite=0>");
     }
 }

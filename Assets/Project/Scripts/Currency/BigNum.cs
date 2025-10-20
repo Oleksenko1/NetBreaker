@@ -10,14 +10,14 @@ public struct BigNum
     private static readonly string[] suffixes = new string[]
     {
         "",    // 10^0
-        "K",   // 10^3
-        "M",   // 10^6
-        "B",   // 10^9
-        "T",   // 10^12
-        "Qa",  // 10^15
-        "Qi",  // 10^18
-        "Sx",  // 10^21
-        "Sp"   // 10^24
+        "k",   // 10^3
+        "m",   // 10^6
+        "b",   // 10^9
+        "t",   // 10^12
+        "qa",  // 10^15
+        "qi",  // 10^18
+        "sx",  // 10^21
+        "sp"   // 10^24
     };
 
     public BigNum(double mantissa, int exponent)

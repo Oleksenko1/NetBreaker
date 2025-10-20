@@ -15,14 +15,15 @@ public class UIUpgradesPanel : MonoBehaviour
     private Dictionary<UpgradeSO, UIUpgradePanelUnit> upgradePanelUnits = new Dictionary<UpgradeSO, UIUpgradePanelUnit>();
     void Start()
     {
-        InitializeAsync().Forget();
-
         closeBtn.onClick.AddListener(ClosePanel);
 
         ClosePanel();
+
+        InitializeAsync().Forget();
     }
     private async UniTaskVoid InitializeAsync()
     {
+        // Loading upgrades list
         upgradesListSO = await upgradesManager.GetUpgradesListAsync();
 
         foreach (UpgradeSO upgradeSO in upgradesListSO.list)

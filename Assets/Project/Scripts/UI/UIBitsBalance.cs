@@ -11,8 +11,13 @@ public class UIBitsBalance : MonoBehaviour
         balanceTxt.SetText(bitsBalance.GetCurrentBalance().ToString());
 
         EventBus.Subscribe<BitsGained_event>(OnBitsAdded);
+        EventBus.Subscribe<BitsSpent_event>(OnBitsSpent);
     }
     private void OnBitsAdded(BitsGained_event e)
+    {
+        balanceTxt.SetText(e.balanceAmount.ToString());
+    }
+    private void OnBitsSpent(BitsSpent_event e)
     {
         balanceTxt.SetText(e.balanceAmount.ToString());
     }

@@ -1,13 +1,21 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
+using System;
+using VContainer;
 
 public class UpgradesManager
 {
-    private UpgradesListSO upgradesList;
+    private BitsBalance bitsBalance;
+    private UpgradesListSO upgradesListSO;
     private UniTaskCompletionSource<UpgradesListSO> loadCompletionSource;
-    public UpgradesManager()
+    private Dictionary<UpgradeSO, int> upgradesLevels = new Dictionary<UpgradeSO, int>();
+    [Inject]
+    public UpgradesManager(BitsBalance bitsBalance)
     {
+        this.bitsBalance = bitsBalance;
+
         loadCompletionSource = new UniTaskCompletionSource<UpgradesListSO>();
 
         LoadUpgradesListAsync().Forget();
@@ -16,20 +24,55 @@ public class UpgradesManager
     {
         var handle = Addressables.LoadAssetAsync<UpgradesListSO>("UpgradesListSO");
 
-        upgradesList = await handle.Task;
+        upgradesListSO = await handle.Task;
 
-        loadCompletionSource.TrySetResult(upgradesList);
+        if (upgradesListSO != null)
+        {
+            // Sets all levels of upgrades to 0
+            for (int i = 0; i < upgradesListSO.list.Count; i++)
+            {
+                upgradesLevels.Add(upgradesListSO.list[i], 0);
+            }
+        }
+
+        loadCompletionSource.TrySetResult(upgradesListSO);
 
         Debug.Log("UpgradesListSO loaded successfully");
     }
-
     public async UniTask<UpgradesListSO> GetUpgradesListAsync()
     {
-        if (upgradesList != null)
+        if (upgradesListSO != null)
         {
-            return upgradesList;
+            return upgradesListSO;
         }
 
         return await loadCompletionSource.Task;
+    }
+    public int GetUpgradeLevel(UpgradeSO upgradeSO) => upgradesLevels[upgradeSO];
+    public BigNum GetUpgradeCost(UpgradeSO upgradeSO)
+    {
+        int level = upgradesLevels[upgradeSO];
+        double startingPrice = upgradeSO.startingPrice;
+        double increment = upgradeSO.priceIncrement;
+
+        BigNum cost = new BigNum(startingPrice * Math.Pow(increment, level));
+
+        return cost;
+    }
+    public bool TryBuyingUpgrade(UpgradeSO upgradeSO)
+    {
+        BigNum upgradeCost = GetUpgradeCost(upgradeSO);
+
+        if (bitsBalance.GetCurrentBalance() >= upgradeCost)
+        {
+            bitsBalance.WithdrawBits(upgradeCost);
+            upgradesLevels[upgradeSO] += 1;
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
