@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 
 public class UIMenuButtons : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class UIMenuButtons : MonoBehaviour
     [SerializeField] private Button openUpgradesBtn;
     [Space(10)]
     [SerializeField] private VerticalLayoutGroup verticalLayout;
+    [Inject] private UIUpgradesPanel uIUpgradesPanel;
     private RectTransform toggleMenuBtnRT;
     private bool isMenuOpen;
     private const float openSpacingOfLayout = 40f;
@@ -22,6 +24,8 @@ public class UIMenuButtons : MonoBehaviour
     {
         toggleMenuBtnRT = toggleMenuBtn.GetComponent<RectTransform>();
         toggleMenuBtn.onClick.AddListener(OnToggleMenuPressed);
+
+        openUpgradesBtn.onClick.AddListener(uIUpgradesPanel.OpenPanel);
 
         verticalLayout.spacing = closedSpacingOfLayout;
         toggleMenuBtnRT.rotation = Quaternion.identity;
