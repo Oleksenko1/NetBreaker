@@ -1,5 +1,5 @@
 [System.Serializable]
-public struct UpgradeTypeValue
+public class UpgradeTypeValue
 {
     public UpgradeType type;
     public double value;

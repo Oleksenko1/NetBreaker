@@ -11,4 +11,12 @@ public class UpgradeSO : ScriptableObject
     public double startingPrice;
     public double priceIncrement;
     public List<UpgradeTypeValue> upgradeTypeValues = new List<UpgradeTypeValue>();
+
+    private void OnValidate()
+    {
+        if (nameLabel == null) nameLabel = "";
+        if (uniqueName == null) uniqueName = "";
+        if (description == null) description = "";
+        if (upgradeTypeValues == null) upgradeTypeValues = new List<UpgradeTypeValue>();
+    }
 }

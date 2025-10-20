@@ -844,7 +844,7 @@ GameObject:
   - component: {fileID: 3044398113673388888}
   - component: {fileID: 2861275322925318547}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PriceTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -979,6 +979,7 @@ GameObject:
   - component: {fileID: 536687799461271297}
   - component: {fileID: 2396885540825700758}
   - component: {fileID: 3340091732793638313}
+  - component: {fileID: 4316865613583109626}
   m_Layer: 5
   m_Name: UpgradePanel_pf
   m_TagString: Untagged
@@ -1008,7 +1009,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 237, y: -44.1357}
+  m_AnchoredPosition: {x: 237, y: -44.135742}
   m_SizeDelta: {x: 474, y: 88.2713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2396885540825700758
@@ -1049,3 +1050,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4316865613583109626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8755631884257789587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968fcb5e498d3a34a9b6e770ee88c7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeNameTxt: {fileID: 2938473567304175814}
+  descriptionTxt: {fileID: 4909809883483265934}
+  levelAmountTxt: {fileID: 5130961513366822429}
+  priceTxt: {fileID: 2861275322925318547}
+  iconImg: {fileID: 1235183087553880847}
+  purchaseBtn: {fileID: 6707139929350392470}

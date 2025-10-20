@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ScriptBot
   m_EditorClassIdentifier: 
   nameLabel: Script bot
-  uniqueName: ScriptBot
+  uniqueName: ScriptBot_upgrade
   sprite: {fileID: -2278012308645443460, guid: 2a31f6bce893ad644969da5513b0f00a, type: 3}
   description: +1 bit/sec
   startingPrice: 100
