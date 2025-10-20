@@ -38,8 +38,6 @@ public class BitsIncomeTracker : IDisposable
 
             BigNum totalBitsPerSecond = clickedBitsPerSecond + passiveBitsPerSecond;
 
-            Debug.Log($"CPS: {clicksCount}, Total BPS: {totalBitsPerSecond}");
-
             trackerUpdated_Event.bitsPerSecond = totalBitsPerSecond;
             EventBus.Publish(trackerUpdated_Event);
 

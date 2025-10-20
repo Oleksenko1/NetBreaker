@@ -12,6 +12,7 @@ public class UIUpgradesPanel : MonoBehaviour
     [SerializeField] private Button closeBtn;
     [Inject] private UpgradesManager upgradesManager;
     private UpgradesListSO upgradesListSO;
+    private Dictionary<UpgradeSO, UIUpgradePanelUnit> upgradePanelUnits = new Dictionary<UpgradeSO, UIUpgradePanelUnit>();
     void Start()
     {
         InitializeAsync().Forget();
@@ -24,7 +25,13 @@ public class UIUpgradesPanel : MonoBehaviour
     {
         upgradesListSO = await upgradesManager.GetUpgradesListAsync();
 
-        Debug.Log("Initialization complete with upgrades list");
+        foreach (UpgradeSO upgradeSO in upgradesListSO.list)
+        {
+            var upgradeUnit = Instantiate(upgradeUnitPf, contentTR).GetComponent<UIUpgradePanelUnit>();
+            upgradeUnit.Initialize(upgradeSO, upgradesManager);
+
+            upgradePanelUnits.Add(upgradeSO, upgradeUnit);
+        }
     }
     public void OpenPanel() => gameObject.SetActive(true);
     public void ClosePanel() => gameObject.SetActive(false);
