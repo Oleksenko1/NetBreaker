@@ -12,10 +12,28 @@ public class UIUpgradePanelUnit : MonoBehaviour
     [SerializeField] private Button purchaseBtn;
     private UpgradeSO upgradeSO;
     private UpgradesManager upgradesManager;
-    public void Initialize(UpgradeSO upgradeSO, UpgradesManager upgradesManager)
+    private BitsBalance bitsBalance;
+    private BigNum currentCost;
+    private bool isAvailable;
+    private bool IsAvailable
+    {
+        get => isAvailable;
+        set
+        {
+            if (isAvailable == value) return;
+
+            isAvailable = value;
+            purchaseBtn.interactable = isAvailable;
+        }
+    }
+    public void Initialize(UpgradeSO upgradeSO, UpgradesManager upgradesManager, BitsBalance bitsBalance)
     {
         this.upgradeSO = upgradeSO;
         this.upgradesManager = upgradesManager;
+        this.bitsBalance = bitsBalance;
+
+        EventBus.Subscribe<BitsGained_event>(OnBitsGained);
+        EventBus.Subscribe<BitsSpent_event>(OnBitsSpent);
 
         upgradeNameTxt.SetText(upgradeSO.nameLabel);
         descriptionTxt.SetText(upgradeSO.description);
@@ -23,6 +41,9 @@ public class UIUpgradePanelUnit : MonoBehaviour
         purchaseBtn.onClick.AddListener(TryPurchasing);
 
         UpdateCostLevelInfo();
+
+        // IsAvailable setter doesn't work on initialization :(
+        purchaseBtn.interactable = isAvailable;
     }
     public void TryPurchasing()
     {
@@ -41,7 +62,24 @@ public class UIUpgradePanelUnit : MonoBehaviour
     }
     private void UpdateCostLevelInfo()
     {
-        levelAmountTxt.SetText(upgradesManager.GetUpgradeLevel(upgradeSO).ToString());
-        priceTxt.SetText(upgradesManager.GetUpgradeCost(upgradeSO) + " <sprite=0>");
+        currentCost = upgradesManager.GetUpgradeCost(upgradeSO);
+        int level = upgradesManager.GetUpgradeLevel(upgradeSO);
+
+        levelAmountTxt.SetText(level.ToString());
+        priceTxt.SetText(currentCost + " <sprite=0>");
+
+        IsAvailable = bitsBalance.GetCurrentBalance() >= currentCost;
+    }
+    private void OnBitsSpent(BitsSpent_event e)
+    {
+        if (!IsAvailable) return;
+
+        IsAvailable = bitsBalance.GetCurrentBalance() >= currentCost;
+    }
+    private void OnBitsGained(BitsGained_event e)
+    {
+        if (IsAvailable) return;
+
+        IsAvailable = bitsBalance.GetCurrentBalance() >= currentCost;
     }
 }

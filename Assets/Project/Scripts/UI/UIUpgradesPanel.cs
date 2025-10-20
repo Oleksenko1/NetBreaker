@@ -11,6 +11,7 @@ public class UIUpgradesPanel : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private Button closeBtn;
     [Inject] private UpgradesManager upgradesManager;
+    [Inject] private BitsBalance bitsBalance;
     private UpgradesListSO upgradesListSO;
     private Dictionary<UpgradeSO, UIUpgradePanelUnit> upgradePanelUnits = new Dictionary<UpgradeSO, UIUpgradePanelUnit>();
     void Start()
@@ -29,7 +30,7 @@ public class UIUpgradesPanel : MonoBehaviour
         foreach (UpgradeSO upgradeSO in upgradesListSO.list)
         {
             var upgradeUnit = Instantiate(upgradeUnitPf, contentTR).GetComponent<UIUpgradePanelUnit>();
-            upgradeUnit.Initialize(upgradeSO, upgradesManager);
+            upgradeUnit.Initialize(upgradeSO, upgradesManager, bitsBalance);
 
             upgradePanelUnits.Add(upgradeSO, upgradeUnit);
         }
