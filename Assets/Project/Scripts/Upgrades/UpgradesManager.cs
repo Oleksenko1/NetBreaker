@@ -8,13 +8,15 @@ using VContainer;
 public class UpgradesManager
 {
     private BitsBalance bitsBalance;
+    private ClickingStats clickingStats;
     private UpgradesListSO upgradesListSO;
     private UniTaskCompletionSource<UpgradesListSO> loadCompletionSource;
     private Dictionary<UpgradeSO, int> upgradesLevels = new Dictionary<UpgradeSO, int>();
     [Inject]
-    public UpgradesManager(BitsBalance bitsBalance)
+    public UpgradesManager(BitsBalance bitsBalance, ClickingManager clickingManager)
     {
         this.bitsBalance = bitsBalance;
+        clickingStats = clickingManager.GetClickingStats();
 
         loadCompletionSource = new UniTaskCompletionSource<UpgradesListSO>();
 
@@ -65,6 +67,8 @@ public class UpgradesManager
 
         if (bitsBalance.GetCurrentBalance() >= upgradeCost)
         {
+            ActivateUpgrade(upgradeSO);
+
             bitsBalance.WithdrawBits(upgradeCost);
             upgradesLevels[upgradeSO] += 1;
 
@@ -73,6 +77,31 @@ public class UpgradesManager
         else
         {
             return false;
+        }
+    }
+    private void ActivateUpgrade(UpgradeSO upgradeSO)
+    {
+        var typeValuesList = upgradeSO.upgradeTypeValues;
+
+        foreach (UpgradeTypeValue typeValue in typeValuesList)
+            ExecuteUpgradeType(typeValue);
+    }
+    private void ExecuteUpgradeType(UpgradeTypeValue typeValue)
+    {
+        var type = typeValue.type;
+        var value = typeValue.value;
+
+        switch (type)
+        {
+            case UpgradeType.BitsPerClickIncrease:
+                clickingStats.AddBitsPerClick(value);
+                break;
+            case UpgradeType.BitsPerSecondIncrease:
+                clickingStats.AddBitsPerSecond(value);
+                break;
+            default:
+                Debug.LogError("!!! Upgrade type is not implemented !!!");
+                break;
         }
     }
 }

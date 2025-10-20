@@ -20,4 +20,6 @@ MonoBehaviour:
   priceIncrement: 1.15
   upgradeTypeValues:
   - type: 0
-    value: 3
+    value:
+      m: 3
+      e: 0

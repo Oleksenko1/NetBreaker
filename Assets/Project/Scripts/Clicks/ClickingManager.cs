@@ -7,7 +7,7 @@ public class ClickingManager : MonoBehaviour
     private ClickingStats clickingStats;
     void Awake()
     {
-        clickingStats = new ClickingStats();
+        if (clickingStats == null) clickingStats = new ClickingStats();
 
         EventBus.Subscribe<ClickPressed_event>(OnClickPressed);
     }
@@ -15,7 +15,13 @@ public class ClickingManager : MonoBehaviour
     {
         bitsBalance.AddBits(clickingStats.GetBitsPerClick());
     }
-    public ClickingStats GetClickingStats() => clickingStats;
+    public ClickingStats GetClickingStats()
+    {
+        if (clickingStats == null)
+            clickingStats = new ClickingStats();
+
+        return clickingStats;
+    }
     [ContextMenu("Increase bits per second")]
     private void Increase()
     {

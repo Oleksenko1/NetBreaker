@@ -12,14 +12,14 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private UIMenuButtons uIMenuButtons;
     protected override void Configure(IContainerBuilder builder)
     {
+        builder.RegisterComponent(clickingManager).AsSelf();
+        builder.RegisterComponent(uIUpgradesPanel).AsSelf();
+        builder.RegisterComponent(uIMenuButtons).AsSelf();
+
         builder.Register<BitsBalance>(Lifetime.Singleton);
         builder.Register<PassiveClickerManager>(Lifetime.Singleton);
         builder.Register<BitsIncomeTracker>(Lifetime.Singleton);
         builder.Register<UpgradesManager>(Lifetime.Singleton);
-
-        builder.RegisterComponent(clickingManager).AsSelf();
-        builder.RegisterComponent(uIUpgradesPanel).AsSelf();
-        builder.RegisterComponent(uIMenuButtons).AsSelf();
     }
     async void Start()
     {
