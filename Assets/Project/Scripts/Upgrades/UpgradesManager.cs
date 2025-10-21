@@ -12,6 +12,7 @@ public class UpgradesManager
     private UpgradesListSO upgradesListSO;
     private UniTaskCompletionSource<UpgradesListSO> loadCompletionSource;
     private Dictionary<UpgradeSO, int> upgradesLevels = new Dictionary<UpgradeSO, int>();
+    private UpgradePurchased_event upgradePurchased_Event = new UpgradePurchased_event();
     [Inject]
     public UpgradesManager(BitsBalance bitsBalance, ClickingManager clickingManager)
     {
@@ -71,6 +72,10 @@ public class UpgradesManager
 
             bitsBalance.WithdrawBits(upgradeCost);
             upgradesLevels[upgradeSO] += 1;
+
+            upgradePurchased_Event.upgradeSO = upgradeSO;
+            upgradePurchased_Event.newLevel = upgradesLevels[upgradeSO];
+            EventBus.Publish(upgradePurchased_Event);
 
             return true;
         }
