@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1177a8d6c68fbef48954ac7333f36bcb
+guid: a88c6e9e7126be54a8bade1455ccb31b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7240323754623972072
-    second: 8bit-palette_0
+      213: -6888563502609286451
+    second: ammo-8-32x_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 8bit-palette_0
+      name: ammo-8-32x_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 1
+        width: 256
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 81dc0d2f7e3358b90800000000000000
-      internalID: -7240323754623972072
+      spriteID: dcab046ddf7e660a0800000000000000
+      internalID: -6888563502609286451
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      8bit-palette_0: -7240323754623972072
+      ammo-8-32x_0: -6888563502609286451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

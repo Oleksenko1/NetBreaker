@@ -6,7 +6,7 @@ using VContainer;
 public class OfflineIncomeManager
 {
     private const int DELAY_TO_INVOKE = 5; // Delay from last session to current to activate offline income payout in SECONDS
-    private const int MAX_HOURS_OFFLINE = 12;
+    private const int MAX_HOURS_OFFLINE = 6;
     private OfflineIncomeInvoke_event offlineIncome_event = new();
     private ClickingStats clickingStats;
     private double maxSecondsOffline;
@@ -25,6 +25,7 @@ public class OfflineIncomeManager
     }
     private async UniTask OnSessionSavedAsync(LastSessionSaved_event e)
     {
+        // Difference in seconds
         double difference = (e.currentSession - e.previousSession).TotalSeconds;
         difference = difference > maxSecondsOffline ? maxSecondsOffline : difference;
 
@@ -38,6 +39,7 @@ public class OfflineIncomeManager
             BigNum totalIncome = clickingStats.GetBitsPerSecond() * new BigNum(difference);
 
             offlineIncome_event.totalIncome = totalIncome;
+            offlineIncome_event.offlineSeconds = difference;
             EventBus.Publish(offlineIncome_event);
 
             Debug.Log($"You were away for {difference} seconds and earned {totalIncome}");
