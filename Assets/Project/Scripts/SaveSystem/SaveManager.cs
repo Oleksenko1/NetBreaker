@@ -32,18 +32,18 @@ public class SaveManager
     }
     private void SaveCurrentBalance()
     {
-        Debug.Log("Saving balance after AUTOSAVE: " + bitsBalance.GetCurrentBalance());
+        //Debug.Log("Saving balance after AUTOSAVE: " + bitsBalance.GetCurrentBalance());
         saveService.SaveBalance(bitsBalance.GetCurrentBalance());
 
     }
     private void OnBitsSpent(BitsSpent_event e)
     {
-        Debug.Log("Saving balance after SPENDING: " + e.balanceAmount);
+        //Debug.Log("Saving balance after SPENDING: " + e.balanceAmount);
         saveService.SaveBalance(e.balanceAmount);
     }
     private void OnUpgradePurchase(UpgradePurchased_event e)
     {
-        Debug.Log("Saving balance after UPGRADE PURCHASE: " + bitsBalance.GetCurrentBalance());
+        //Debug.Log($"Saving balance after UPGRADE PURCHASE: {e.upgradeSO.nameLabel}, level {e.newLevel}");
         saveService.SetUnlockedUpgrade(e.upgradeSO.uniqueName, e.newLevel);
     }
 }

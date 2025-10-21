@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -51,7 +50,7 @@ public class SaveService
         }
     }
 
-    public async UniTask<Dictionary<string, int>> GetUnlockedUpgradesAsync()
+    public async UniTask<List<UpgradeLevelEntry>> GetUnlockedUpgradesAsync()
     {
         if (!isLoaded)
             await initCompletion.Task;
@@ -62,12 +61,22 @@ public class SaveService
     {
         await SetUnlockedUpgradeAsync(uniqueId, level);
     }
-    private async UniTask SetUnlockedUpgradeAsync(string uniqueId, int level)
+    private async UniTask SetUnlockedUpgradeAsync(string _uniqueId, int _level)
     {
-        if (runtimeData.upgradeLevels.ContainsKey(uniqueId))
-            runtimeData.upgradeLevels[uniqueId] = level;
-        else
-            runtimeData.upgradeLevels.Add(uniqueId, level);
+        bool foundUpgrade = false;
+        for (int i = 0; i < runtimeData.upgradeLevels.Count; i++)
+        {
+            if (runtimeData.upgradeLevels[i].uniqueId == _uniqueId)
+            {
+                runtimeData.upgradeLevels[i].level = _level;
+                foundUpgrade = true;
+
+                break;
+            }
+        }
+
+        if (!foundUpgrade)
+            runtimeData.upgradeLevels.Add(new UpgradeLevelEntry { uniqueId = _uniqueId, level = _level });
 
         await SaveToDiskAsync();
     }

@@ -4,5 +4,5 @@ using System.Collections.Generic;
 public class SaveData
 {
     public BigNum bitsBalance;
-    public Dictionary<string, int> upgradeLevels = new Dictionary<string, int>();
+    public List<UpgradeLevelEntry> upgradeLevels = new List<UpgradeLevelEntry>();
 }

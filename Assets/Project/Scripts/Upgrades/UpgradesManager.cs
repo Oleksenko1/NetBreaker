@@ -9,14 +9,16 @@ public class UpgradesManager
 {
     private BitsBalance bitsBalance;
     private ClickingStats clickingStats;
+    private SaveService saveService;
     private UpgradesListSO upgradesListSO;
     private UniTaskCompletionSource<UpgradesListSO> loadCompletionSource;
     private Dictionary<UpgradeSO, int> upgradesLevels = new Dictionary<UpgradeSO, int>();
     private UpgradePurchased_event upgradePurchased_Event = new UpgradePurchased_event();
     [Inject]
-    public UpgradesManager(BitsBalance bitsBalance, ClickingManager clickingManager)
+    public UpgradesManager(BitsBalance bitsBalance, ClickingManager clickingManager, SaveService saveService)
     {
         this.bitsBalance = bitsBalance;
+        this.saveService = saveService;
         clickingStats = clickingManager.GetClickingStats();
 
         loadCompletionSource = new UniTaskCompletionSource<UpgradesListSO>();
@@ -29,6 +31,7 @@ public class UpgradesManager
 
         upgradesListSO = await handle.Task;
 
+        // Initializing all upgrades in the game
         if (upgradesListSO != null)
         {
             // Sets all levels of upgrades to 0
@@ -38,17 +41,35 @@ public class UpgradesManager
             }
         }
 
-        loadCompletionSource.TrySetResult(upgradesListSO);
+        List<UpgradeLevelEntry> unlockedUpgrades = await saveService.GetUnlockedUpgradesAsync();
+        
+        // Setting levels to purchased upgrades from the save file
+        foreach (UpgradeLevelEntry upgradeLevelEntry in unlockedUpgrades)
+        {
+            string uniqueId = upgradeLevelEntry.uniqueId;
+            int level = upgradeLevelEntry.level;
 
-        Debug.Log("UpgradesListSO loaded successfully");
+            foreach (UpgradeSO upgradeSO in upgradesLevels.Keys)
+            {
+                if (upgradeSO.uniqueName == uniqueId)
+                {
+                    upgradesLevels[upgradeSO] = level;
+
+                    // Activating upgrade
+                    for (int i = 0; i < level; i++)
+                    {
+                        ActivateUpgrade(upgradeSO);
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        loadCompletionSource.TrySetResult(upgradesListSO);
     }
     public async UniTask<UpgradesListSO> GetUpgradesListAsync()
     {
-        if (upgradesListSO != null)
-        {
-            return upgradesListSO;
-        }
-
         return await loadCompletionSource.Task;
     }
     public int GetUpgradeLevel(UpgradeSO upgradeSO) => upgradesLevels[upgradeSO];
