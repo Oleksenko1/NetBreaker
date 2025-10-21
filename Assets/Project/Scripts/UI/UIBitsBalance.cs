@@ -6,9 +6,10 @@ public class UIBitsBalance : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI balanceTxt;
     [Inject] private BitsBalance bitsBalance;
-    void Start()
+    async void Start()
     {
-        balanceTxt.SetText(bitsBalance.GetCurrentBalance().ToString());
+        BigNum currentBalance = await bitsBalance.GetCurrentBalanceAsync();
+        balanceTxt.SetText(currentBalance.ToString());
 
         EventBus.Subscribe<BitsGained_event>(OnBitsAdded);
         EventBus.Subscribe<BitsSpent_event>(OnBitsSpent);
