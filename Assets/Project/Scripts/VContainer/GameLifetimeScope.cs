@@ -1,5 +1,8 @@
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using VContainer;
 using VContainer.Unity;
 
@@ -25,6 +28,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.Register<BitsIncomeTracker>(Lifetime.Singleton);
         builder.Register<UpgradesManager>(Lifetime.Singleton);
         builder.Register<SaveManager>(Lifetime.Singleton);
+        builder.Register<OfflineIncomeManager>(Lifetime.Singleton);
     }
     async void Start()
     {
@@ -37,7 +41,19 @@ public class GameLifetimeScope : LifetimeScope
         Container.Resolve<PassiveClickerManager>();
         Container.Resolve<BitsIncomeTracker>();
         Container.Resolve<SaveManager>();
+        Container.Resolve<OfflineIncomeManager>();
 
         await saveService.InitAsync();
+    }
+    [ContextMenu("Reset savefile")]
+    private void ResetSavefile()
+    {
+        ResetSavefileAsync().Forget();
+    }
+    private async UniTask ResetSavefileAsync()
+    {
+        await saveService.DeleteSaveAsync();
+
+        SceneManager.LoadScene(0);
     }
 }

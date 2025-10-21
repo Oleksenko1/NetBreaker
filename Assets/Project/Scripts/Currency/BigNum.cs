@@ -139,7 +139,21 @@ public struct BigNum
     {
         return a < b || (a.e == b.e && Math.Abs(a.m - b.m) < 0.0001);
     }
+    public static bool operator ==(BigNum a, BigNum b)
+    {
+        if (a.m == 0 && b.m == 0)
+            return true;
 
+        if (a.e != b.e)
+            return false;
+
+        return Math.Abs(a.m - b.m) < 0.0001;
+    }
+
+    public static bool operator !=(BigNum a, BigNum b)
+    {
+        return !(a == b);
+    }
     public string ToString(int decimals = 2)
     {
         if (m == 0) return "0,00";

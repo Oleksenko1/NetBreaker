@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -98,7 +99,39 @@ public class SaveService
         runtimeData.bitsBalance = newBalance;
         await SaveToDiskAsync(ct);
     }
+    public async void SaveLastSession(DateTime dateTime)
+    {
+        await SaveLastSessionAsync(dateTime);
+    }
+    public async UniTask SaveLastSessionAsync(DateTime dateTime, CancellationToken ct = default)
+    {
+        runtimeData.lastSessionString = dateTime.ToString("O");
+        await SaveToDiskAsync(ct);
+    }
+    public async UniTask<string> GetLastSessionString()
+    {
+        if (!isLoaded)
+            await initCompletion.Task;
 
+        Debug.Log(runtimeData.lastSessionString);
+
+        if (string.IsNullOrEmpty(runtimeData.lastSessionString))
+            return DateTime.MinValue.ToString("O");
+
+        return runtimeData.lastSessionString;
+    }
+    public async UniTask<DateTime> GetLastSessionDatetime()
+    {
+        if (!isLoaded)
+            await initCompletion.Task;
+
+        Debug.Log(runtimeData.lastSessionString);
+
+        if (string.IsNullOrEmpty(runtimeData.lastSessionString))
+            return DateTime.MinValue;
+
+        return DateTime.Parse(runtimeData.lastSessionString, null, System.Globalization.DateTimeStyles.RoundtripKind);
+    }
     public async UniTask DeleteSaveAsync(CancellationToken ct = default)
     {
         await saveSemaphore.WaitAsync();

@@ -42,7 +42,7 @@ public class UpgradesManager
         }
 
         List<UpgradeLevelEntry> unlockedUpgrades = await saveService.GetUnlockedUpgradesAsync();
-        
+
         // Setting levels to purchased upgrades from the save file
         foreach (UpgradeLevelEntry upgradeLevelEntry in unlockedUpgrades)
         {
@@ -65,6 +65,8 @@ public class UpgradesManager
                 }
             }
         }
+
+        clickingStats.MarkSaveAsLoaded();
 
         loadCompletionSource.TrySetResult(upgradesListSO);
     }
