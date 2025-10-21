@@ -46,6 +46,8 @@ public class GameLifetimeScope : LifetimeScope
         Container.Resolve<SaveManager>();
         Container.Resolve<OfflineIncomeManager>();
 
+        PerformanceUnlocker.Execute();
+
         await saveService.InitAsync();
     }
     [ContextMenu("Reset savefile")]
