@@ -36,7 +36,7 @@ public class OfflineIncomeManager
             // Returns if there is no bits per second
             if (clickingStats.GetBitsPerSecond() == new BigNum(0)) return;
 
-            BigNum totalIncome = clickingStats.GetBitsPerSecond() * new BigNum(difference);
+            BigNum totalIncome = clickingStats.GetBitsPerSecond() * new BigNum(difference) / new BigNum(2); // Dividing offline income by 2
 
             offlineIncome_event.totalIncome = totalIncome;
             offlineIncome_event.offlineSeconds = difference;
