@@ -2,5 +2,6 @@ public enum SFXType
 {
     UIOpenPanelBtn,
     UIPurchaseUpgrade,
-    UIClick
+    UIClick,
+    UIClose
 }

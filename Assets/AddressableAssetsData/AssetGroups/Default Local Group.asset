@@ -164,6 +164,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - KeyboardSFX
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd58f9c291eb66446903b82cfcb7232d
+    m_Address: SFX/UIClose_sfx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e11c1dfe44665eb4e95a144dc9aacbda
     m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-029.wav
     m_ReadOnly: 0

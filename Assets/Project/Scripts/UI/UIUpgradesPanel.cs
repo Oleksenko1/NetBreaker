@@ -19,9 +19,9 @@ public class UIUpgradesPanel : MonoBehaviour
     {
         closeBtn.onClick.AddListener(ClosePanel);
 
-        ClosePanel();
-
         InitializeAsync().Forget();
+
+        gameObject.SetActive(false);
     }
     private async UniTaskVoid InitializeAsync()
     {
@@ -42,5 +42,10 @@ public class UIUpgradesPanel : MonoBehaviour
 
         gameObject.SetActive(true);
     }
-    public void ClosePanel() => gameObject.SetActive(false);
+    public void ClosePanel()
+    {
+        soundPlayer.PlayUI_SFX(SFXType.UIClose);
+
+        gameObject.SetActive(false);
+    }
 }
