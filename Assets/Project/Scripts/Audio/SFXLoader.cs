@@ -12,10 +12,10 @@ public class SFXLoader
     private List<AudioClip> keyboardSounds;
     private bool _isLoaded = false;
 
-    public async void Start()
+    public async void Initialize()
     {
         await LoadAllSFXAsync();
-        await LoadCoinClipsAsync();
+        await LoadKeyboardClipsAsync();
     }
 
     public async UniTask LoadAllSFXAsync()
@@ -41,7 +41,7 @@ public class SFXLoader
         _isLoaded = true;
     }
 
-    public async UniTask LoadCoinClipsAsync()
+    public async UniTask LoadKeyboardClipsAsync()
     {
         if (keyboardSounds != null && keyboardSounds.Count > 0)
             return;
@@ -82,11 +82,12 @@ public class SFXLoader
     public async Task<AudioClip> GetRandomKeyboardClipAsync()
     {
         if (keyboardSounds == null || keyboardSounds.Count == 0)
-            await LoadCoinClipsAsync();
+            await LoadKeyboardClipsAsync();
 
         if (keyboardSounds.Count == 0)
             return null;
 
         return keyboardSounds[UnityEngine.Random.Range(0, keyboardSounds.Count)];
     }
+    public bool IsLoaded() => _isLoaded;
 }
