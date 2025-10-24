@@ -8,6 +8,7 @@ public class SoundPlayer : MonoBehaviour
     [Header("AudioSources")]
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource uiSource;
+    [SerializeField] private AudioSource musicSource;
     private SFXLoader sfxLoader;
     private Dictionary<AudioSourceType, AudioSource> audioSources = new Dictionary<AudioSourceType, AudioSource>();
     void Awake()
@@ -17,6 +18,7 @@ public class SoundPlayer : MonoBehaviour
 
         audioSources.Add(AudioSourceType.SFXSource, sfxSource);
         audioSources.Add(AudioSourceType.UISource, uiSource);
+        audioSources.Add(AudioSourceType.MusicSource, musicSource);
     }
     public void PlayDefaultSFX(SFXType sFXType, float volume = 1f)
     {
@@ -44,9 +46,16 @@ public class SoundPlayer : MonoBehaviour
 
         audioSource.PlayOneShot(clip, volume);
     }
+    public void SetVolume(AudioSourceType audioSourceType, float value)
+    {
+        AudioSource audioSource = audioSources[audioSourceType];
+
+        audioSource.volume = value;
+    }
 }
 public enum AudioSourceType
 {
     SFXSource,
-    UISource
+    UISource,
+    MusicSource
 }
