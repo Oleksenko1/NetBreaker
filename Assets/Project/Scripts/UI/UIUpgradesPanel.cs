@@ -12,6 +12,7 @@ public class UIUpgradesPanel : MonoBehaviour
     [SerializeField] private Button closeBtn;
     [Inject] private UpgradesManager upgradesManager;
     [Inject] private BitsBalance bitsBalance;
+    [Inject] private SoundPlayer soundPlayer;
     private UpgradesListSO upgradesListSO;
     private Dictionary<UpgradeSO, UIUpgradePanelUnit> upgradePanelUnits = new Dictionary<UpgradeSO, UIUpgradePanelUnit>();
     void Start()
@@ -35,6 +36,11 @@ public class UIUpgradesPanel : MonoBehaviour
             upgradePanelUnits.Add(upgradeSO, upgradeUnit);
         }
     }
-    public void OpenPanel() => gameObject.SetActive(true);
+    public void OpenPanel()
+    {
+        soundPlayer.PlayUI_SFX(SFXType.UIOpenPanelBtn);
+
+        gameObject.SetActive(true);
+    }
     public void ClosePanel() => gameObject.SetActive(false);
 }

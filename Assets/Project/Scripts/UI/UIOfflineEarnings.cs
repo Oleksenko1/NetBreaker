@@ -10,6 +10,7 @@ public class UIOfflineEarnings : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bitsEarnedTxt;
     [SerializeField] private Button claimButton;
     [Inject] private BitsBalance bitsBalance;
+    [Inject] private SoundPlayer soundPlayer;
     private BigNum currentEarnings;
     void Awake()
     {
@@ -30,6 +31,8 @@ public class UIOfflineEarnings : MonoBehaviour
 
         timeOfflineTxt.SetText(offlineTimeFormatted);
         bitsEarnedTxt.SetText($"{currentEarnings} <sprite=0>");
+
+        soundPlayer.PlayUI_SFX(SFXType.UIOpenPanelBtn);
 
         gameObject.SetActive(true);
     }
