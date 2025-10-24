@@ -104,6 +104,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - KeyboardSFX
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7d4350ea93a4ca42b85fbf1186d557f
+    m_Address: SFX/UIClose_sfx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b49765c6c04f2c54180f3f98e493dfd3
     m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-001.wav
     m_ReadOnly: 0
@@ -127,6 +132,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c20073f8eb818c348963cf5577052d89
+    m_Address: SFX/UICollect_sfx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c202b880de389e642b438535f2049e04
     m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-016.wav
@@ -164,8 +174,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - KeyboardSFX
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dd58f9c291eb66446903b82cfcb7232d
-    m_Address: SFX/UIClose_sfx
+  - m_GUID: dcb1d55c57f049f42894d69788898540
+    m_Address: SFX/UIOpenPanelBtn_sfx
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -220,11 +230,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - KeyboardSFX
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: facf5b2c475570d408a8d0ad643d316e
-    m_Address: SFX/UIOpenPanelBtn_sfx
-    m_ReadOnly: 0
-    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fe1d18eabdc4f51439aad40d86ed523d
     m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-027.wav

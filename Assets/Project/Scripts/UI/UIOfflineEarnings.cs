@@ -43,6 +43,8 @@ public class UIOfflineEarnings : MonoBehaviour
         bitsBalance.AddBits(currentEarnings);
         currentEarnings = new BigNum(0);
 
+        soundPlayer.PlayUI_SFX(SFXType.UICollect);
+
         gameObject.SetActive(false);
     }
 }
