@@ -15,8 +15,32 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 565eb5c33dae616489421dbb64c6c50e
   m_SerializeEntries:
-  - m_GUID: 426898363ccf8d64f8c23b13c2821586
-    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/KeyboardClick (1).mp3
+  - m_GUID: 05a2f6db8561dad4a814f2c25ef6616f
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-005.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39af794384af72f4da9554bfd2f15edb
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-006.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 42acc71f78254a0479d3e4935bd175c4
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-020.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4402146147acb7443ae78d868c5d16d8
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-003.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ae0cf09ff3b121429862a563aa6ff77
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-031.wav
     m_ReadOnly: 0
     m_SerializedLabels:
     - KeyboardSFX
@@ -26,14 +50,140 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 78c90a9775d6a7049b9bbdf78bdc53ad
-    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/KeyboardClick (2).mp3
+  - m_GUID: 7d7283a79ba5c544191d065b9f0a1e05
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-023.wav
     m_ReadOnly: 0
     m_SerializedLabels:
     - KeyboardSFX
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a27b0b86ffd9c2f4896788e4c195b428
-    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/KeyboardClick (4).mp3
+  - m_GUID: 82bc0a22ba1adde4d976a9e581452133
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-015.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83647b58003fe0149ac1ec5f37a7b64a
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-018.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8809f587d94e37a498daed3b0d2a8325
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-019.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89727393a31146e4cbf6c806838c18c2
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-011.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e7dd213f3e66d64dabfaac4dd6a7813
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-017.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9eb45bc6e2508fb44a51770b6ce1faf3
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-009.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a221ec0cf87885a4ea0cb2395610dfd6
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-008.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a46b6ba6e34209a4f861c2b5855c20c6
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-013.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b49765c6c04f2c54180f3f98e493dfd3
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-001.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4f27807b6c27f746b5697266f337756
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-010.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbc3893ac603f83459e7bbb9bc425b8e
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-032.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd6f9ef438cb7054ea7dac9e84b7f2cc
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-022.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c202b880de389e642b438535f2049e04
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-016.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c57b480d3b985354eb08979a22c2cb38
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-007.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6b4747123bb6e3449fba846afccbaf5
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-021.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7ecb6937c551c04ba0706087e96d1f5
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-002.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc0aab8649eebfa45ab1fd26b6265c5d
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-030.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7cff3d279b8dbc42bfa42d9bfa219ec
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-024.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e11c1dfe44665eb4e95a144dc9aacbda
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-029.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e1ebedd49330adc4cb1a49406315cf4d
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-012.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e25c8d151d618ed48bea6089e421219b
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-025.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e93fd460866cc4748b5f9be7f7d9c382
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-026.wav
     m_ReadOnly: 0
     m_SerializedLabels:
     - KeyboardSFX
@@ -43,14 +193,14 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f1bcc244f60eea64781b2262db22690d
-    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/KeyboardClick (3).mp3
+  - m_GUID: ea4841e74bbbef84886f3a062cc834bd
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-014.wav
     m_ReadOnly: 0
     m_SerializedLabels:
     - KeyboardSFX
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f59a60533635c944796f34966e1e8abd
-    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/KeyboardClick (5).mp3
+  - m_GUID: f30994c1eb3f32c4392324d18e8ff86f
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-004.wav
     m_ReadOnly: 0
     m_SerializedLabels:
     - KeyboardSFX
@@ -60,10 +210,22 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f78bb24a9d15f614c85096a9cf825c88
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-028.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: facf5b2c475570d408a8d0ad643d316e
     m_Address: SFX/UIOpenPanelBtn_sfx
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe1d18eabdc4f51439aad40d86ed523d
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/keypress-027.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 11bfe19bb9aaf38449a48be3ce92a989, type: 2}

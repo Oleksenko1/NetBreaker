@@ -4,6 +4,7 @@ using VContainer;
 public class ClickingManager : MonoBehaviour
 {
     [Inject] private BitsBalance bitsBalance;
+    [Inject] private SoundPlayer soundPlayer;
     private ClickingStats clickingStats;
     void Awake()
     {
@@ -14,6 +15,8 @@ public class ClickingManager : MonoBehaviour
     private void OnClickPressed(ClickPressed_event e)
     {
         bitsBalance.AddBits(clickingStats.GetBitsPerClick());
+
+        soundPlayer.PlayKeyboardSFX(2f);
     }
     public ClickingStats GetClickingStats()
     {
