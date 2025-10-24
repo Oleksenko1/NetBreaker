@@ -15,8 +15,53 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 565eb5c33dae616489421dbb64c6c50e
   m_SerializeEntries:
+  - m_GUID: 426898363ccf8d64f8c23b13c2821586
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/KeyboardClick (1).mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 645a0519cc1990548b9b9164a3863480
     m_Address: UpgradesListSO
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78c90a9775d6a7049b9bbdf78bdc53ad
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/KeyboardClick (2).mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a27b0b86ffd9c2f4896788e4c195b428
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/KeyboardClick (4).mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9befffd4da607448a1ad7f60c1b6658
+    m_Address: SFX/UIClick_sfx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1bcc244f60eea64781b2262db22690d
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/KeyboardClick (3).mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f59a60533635c944796f34966e1e8abd
+    m_Address: Assets/Project/Assets/Audio/Sounds/KeayboardClick/KeyboardClick (5).mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - KeyboardSFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f71a5a246341fe24daeca413448e5baf
+    m_Address: SFX/PurchaseUpgrade_sfx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: facf5b2c475570d408a8d0ad643d316e
+    m_Address: SFX/CollectBtn_sfx
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
