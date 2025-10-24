@@ -12,6 +12,7 @@ public class UIMenuButtons : MonoBehaviour
     [Space(10)]
     [SerializeField] private VerticalLayoutGroup verticalLayout;
     [Inject] private UIUpgradesPanel uIUpgradesPanel;
+    [Inject] private SoundPlayer soundPlayer;
     private RectTransform toggleMenuBtnRT;
     private bool isMenuOpen;
     private const float openSpacingOfLayout = 40f;
@@ -33,6 +34,8 @@ public class UIMenuButtons : MonoBehaviour
 
     private void OnToggleMenuPressed()
     {
+        soundPlayer.PlayUI_SFX(SFXType.UIClick);
+
         float targetSpacing = isMenuOpen ? closedSpacingOfLayout : openSpacingOfLayout;
         Vector3 rotation = isMenuOpen ? Vector3.zero : Vector3.forward * 180;
         float animDuration = 0.3f;

@@ -1,9 +1,6 @@
-namespace NetBreaker.Assets.Project.Scripts.Audio
+public enum SFXType
 {
-    public enum SFXType
-    {
-        CollectBtn,
-        PurchaseUpgrade,
-        UIClick
-    }
+    UICollectBtn,
+    UIPurchaseUpgrade,
+    UIClick
 }

@@ -56,12 +56,12 @@ MonoBehaviour:
     - KeyboardSFX
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f71a5a246341fe24daeca413448e5baf
-    m_Address: SFX/PurchaseUpgrade_sfx
+    m_Address: SFX/UIPurchaseUpgrade_sfx
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: facf5b2c475570d408a8d0ad643d316e
-    m_Address: SFX/CollectBtn_sfx
+    m_Address: SFX/UICollectBtn_sfx
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

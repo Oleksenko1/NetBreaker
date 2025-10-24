@@ -10,6 +10,7 @@ public class GameLifetimeScope : LifetimeScope
 {
     [SerializeField] private ClickingManager clickingManager;
     [SerializeField] private ClickPopupManager clickPopupManager;
+    [SerializeField] private SoundPlayer soundPlayer;
     [SerializeField] private UIBitsBalance uIBitsBalance;
     [SerializeField] private UIUpgradesPanel uIUpgradesPanel;
     [SerializeField] private UIMenuButtons uIMenuButtons;
@@ -18,6 +19,7 @@ public class GameLifetimeScope : LifetimeScope
     protected override void Configure(IContainerBuilder builder)
     {
         builder.RegisterComponent(clickingManager).AsSelf();
+        builder.RegisterComponent(soundPlayer).AsSelf();
         builder.RegisterComponent(uIUpgradesPanel).AsSelf();
         builder.RegisterComponent(uIMenuButtons).AsSelf();
         builder.RegisterComponent(uIOfflineEarnings).AsSelf();
