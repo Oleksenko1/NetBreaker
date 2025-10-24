@@ -31,7 +31,7 @@ public class UIUpgradesPanel : MonoBehaviour
         foreach (UpgradeSO upgradeSO in upgradesListSO.list)
         {
             var upgradeUnit = Instantiate(upgradeUnitPf, contentTR).GetComponent<UIUpgradePanelUnit>();
-            upgradeUnit.Initialize(upgradeSO, upgradesManager, bitsBalance);
+            upgradeUnit.Initialize(upgradeSO, upgradesManager, bitsBalance, soundPlayer);
 
             upgradePanelUnits.Add(upgradeSO, upgradeUnit);
         }

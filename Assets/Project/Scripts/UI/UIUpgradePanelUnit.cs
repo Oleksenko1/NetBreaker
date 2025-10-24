@@ -13,6 +13,7 @@ public class UIUpgradePanelUnit : MonoBehaviour
     private UpgradeSO upgradeSO;
     private UpgradesManager upgradesManager;
     private BitsBalance bitsBalance;
+    private SoundPlayer soundPlayer;
     private BigNum currentCost;
     private bool isAvailable;
     private bool IsAvailable
@@ -26,11 +27,12 @@ public class UIUpgradePanelUnit : MonoBehaviour
             purchaseBtn.interactable = isAvailable;
         }
     }
-    public void Initialize(UpgradeSO upgradeSO, UpgradesManager upgradesManager, BitsBalance bitsBalance)
+    public void Initialize(UpgradeSO upgradeSO, UpgradesManager upgradesManager, BitsBalance bitsBalance, SoundPlayer soundPlayer)
     {
         this.upgradeSO = upgradeSO;
         this.upgradesManager = upgradesManager;
         this.bitsBalance = bitsBalance;
+        this.soundPlayer = soundPlayer;
 
         EventBus.Subscribe<BitsGained_event>(OnBitsGained);
         EventBus.Subscribe<BitsSpent_event>(OnBitsSpent);
@@ -51,7 +53,7 @@ public class UIUpgradePanelUnit : MonoBehaviour
 
         if (success)
         {
-            Debug.Log("Purchase successful");
+            soundPlayer.PlayUI_SFX(SFXType.UIPurchaseUpgrade);
 
             UpdateCostLevelInfo();
         }
