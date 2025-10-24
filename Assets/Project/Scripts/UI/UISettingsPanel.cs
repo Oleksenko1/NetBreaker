@@ -13,10 +13,20 @@ public class UISettingsPanel : MonoBehaviour
     [Inject] private SoundPlayer soundPlayer;
     void Awake()
     {
+        closeBtn.onClick.AddListener(ClosePanel);
 
+        gameObject.SetActive(false);
+    }
+    public void OpenPanel()
+    {
+        soundPlayer.PlayUI_SFX(SFXType.UIOpenPanelBtn);
+
+        gameObject.SetActive(true);
     }
     private void ClosePanel()
     {
-        
+        soundPlayer.PlayUI_SFX(SFXType.UIClose);
+
+        gameObject.SetActive(false);
     }
 }

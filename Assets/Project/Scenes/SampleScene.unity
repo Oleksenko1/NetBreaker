@@ -797,8 +797,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1846893039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.442, y: 0}
-  m_AnchorMax: {x: 0.442, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2212,7 +2212,7 @@ RectTransform:
   m_Father: {fileID: 1900208523}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.442, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2286,8 +2286,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 245773927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.442, y: 0}
-  m_AnchorMax: {x: 0.442, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2795,7 +2795,7 @@ GameObject:
   - component: {fileID: 750190301}
   - component: {fileID: 750190302}
   m_Layer: 5
-  m_Name: MasterSlider
+  m_Name: MusicSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3190,7 +3190,7 @@ GameObject:
   - component: {fileID: 851930114}
   - component: {fileID: 851930113}
   m_Layer: 5
-  m_Name: MasterLabel
+  m_Name: MusicLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3882,7 +3882,7 @@ RectTransform:
   m_Father: {fileID: 1658807855}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.442, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4686,6 +4686,7 @@ MonoBehaviour:
   uIBitsBalance: {fileID: 1301630209}
   uIUpgradesPanel: {fileID: 139630971}
   uIMenuButtons: {fileID: 1149722407}
+  uISettingsPanel: {fileID: 2107917828}
   uIOfflineEarnings: {fileID: 2009565847}
 --- !u!1 &1301630207
 GameObject:
@@ -4771,7 +4772,7 @@ RectTransform:
   m_Father: {fileID: 1882656842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.442, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6180,8 +6181,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 609349461}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.442, y: 0}
-  m_AnchorMax: {x: 0.442, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7234,13 +7235,14 @@ GameObject:
   - component: {fileID: 2107917825}
   - component: {fileID: 2107917827}
   - component: {fileID: 2107917826}
+  - component: {fileID: 2107917828}
   m_Layer: 5
   m_Name: SettingsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2107917825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7299,6 +7301,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107917824}
   m_CullTransparentMesh: 1
+--- !u!114 &2107917828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107917824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf934b6629fdb42b9caba7b7882dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicVolumeSlider: {fileID: 750190302}
+  sfxVolumeSlider: {fileID: 1151451732}
+  uiVolumeSlider: {fileID: 1994911275}
+  closeBtn: {fileID: 518574101}
 --- !u!1 &2121269555
 GameObject:
   m_ObjectHideFlags: 0

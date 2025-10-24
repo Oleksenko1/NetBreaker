@@ -12,6 +12,7 @@ public class UIMenuButtons : MonoBehaviour
     [Space(10)]
     [SerializeField] private VerticalLayoutGroup verticalLayout;
     [Inject] private UIUpgradesPanel uIUpgradesPanel;
+    [Inject] private UISettingsPanel uISettingsPanel;
     [Inject] private SoundPlayer soundPlayer;
     private RectTransform toggleMenuBtnRT;
     private bool isMenuOpen;
@@ -27,6 +28,7 @@ public class UIMenuButtons : MonoBehaviour
         toggleMenuBtn.onClick.AddListener(OnToggleMenuPressed);
 
         openUpgradesBtn.onClick.AddListener(uIUpgradesPanel.OpenPanel);
+        openSettingsBtn.onClick.AddListener(uISettingsPanel.OpenPanel);
 
         verticalLayout.spacing = closedSpacingOfLayout;
         toggleMenuBtnRT.rotation = Quaternion.identity;

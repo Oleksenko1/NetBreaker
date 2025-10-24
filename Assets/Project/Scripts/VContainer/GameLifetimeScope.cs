@@ -14,6 +14,7 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private UIBitsBalance uIBitsBalance;
     [SerializeField] private UIUpgradesPanel uIUpgradesPanel;
     [SerializeField] private UIMenuButtons uIMenuButtons;
+    [SerializeField] private UISettingsPanel uISettingsPanel;
     [SerializeField] private UIOfflineEarnings uIOfflineEarnings;
     private SaveService saveService;
     protected override void Configure(IContainerBuilder builder)
@@ -22,6 +23,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterComponent(soundPlayer).AsSelf();
         builder.RegisterComponent(uIUpgradesPanel).AsSelf();
         builder.RegisterComponent(uIMenuButtons).AsSelf();
+        builder.RegisterComponent(uISettingsPanel).AsSelf();
         builder.RegisterComponent(uIOfflineEarnings).AsSelf();
 
         saveService = new SaveService();
@@ -41,6 +43,7 @@ public class GameLifetimeScope : LifetimeScope
         Container.Inject(uIBitsBalance);
         Container.Inject(uIUpgradesPanel);
         Container.Inject(uIMenuButtons);
+        Container.Inject(uISettingsPanel);
         Container.Inject(uIOfflineEarnings);
 
         Container.Resolve<PassiveClickerManager>();
