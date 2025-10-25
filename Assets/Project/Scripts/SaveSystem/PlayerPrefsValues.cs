@@ -2,5 +2,6 @@ public enum PlayerPrefsValues
 {
     MusicVolume,
     SFXVolume,
-    UIVolume
+    UIVolume,
+    NotificationPermissionAsked
 }
