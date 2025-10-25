@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameLabel: Script bot
   uniqueName: ScriptBot_upgrade
-  sprite: {fileID: -2278012308645443460, guid: 2a31f6bce893ad644969da5513b0f00a, type: 3}
+  sprite: {fileID: 21300000, guid: 2a31f6bce893ad644969da5513b0f00a, type: 3}
   description: +1 bit/sec
   startingPrice: 100
   priceIncrement: 1.15

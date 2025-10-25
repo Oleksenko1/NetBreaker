@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameLabel: Mechanical mouse
   uniqueName: MechanicalMouse_upgrade
-  sprite: {fileID: -357421434760999972, guid: 8e068e6a341d8ca4f824e82b78729a4e, type: 3}
+  sprite: {fileID: 21300000, guid: 8e068e6a341d8ca4f824e82b78729a4e, type: 3}
   description: +1 bit per click
   startingPrice: 15
-  priceIncrement: 1.15
+  priceIncrement: 1.25
   upgradeTypeValues:
   - type: 0
     value:
