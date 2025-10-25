@@ -10,6 +10,8 @@ public class NotificationManager : MonoBehaviour
     [SerializeField] private Button deniedBtn;
     void Start()
     {
+        permissionRequestPanel.SetActive(false);
+
         acceptBtn.onClick.AddListener(OnUserAcceptedExplanation);
         deniedBtn.onClick.AddListener(OnUserDeclinedExplanation);
 

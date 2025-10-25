@@ -5,7 +5,7 @@ using VContainer;
 
 public class OfflineIncomeManager
 {
-    private const int SECONDS_TO_INVOKE = 30; // Delay from last session to current to activate offline income payout in SECONDS
+    private const int SECONDS_TO_INVOKE = 120; // Delay from last session to current to activate offline income payout in SECONDS
     public const int MAX_HOURS_OFFLINE = 4;
     private OfflineIncomeInvoke_event offlineIncome_event = new();
     private ClickingStats clickingStats;
