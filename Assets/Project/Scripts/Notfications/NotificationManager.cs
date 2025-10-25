@@ -8,6 +8,7 @@ public class NotificationManager : MonoBehaviour
     [SerializeField] private GameObject permissionRequestPanel;
     [SerializeField] private Button acceptBtn;
     [SerializeField] private Button deniedBtn;
+
     void Start()
     {
         permissionRequestPanel.SetActive(false);
@@ -94,7 +95,7 @@ public class NotificationManager : MonoBehaviour
         // Trigger system permission dialog if not yet requested
         if (status == PermissionStatus.NotRequested)
         {
-            TriggerSystemPermissionRequest();
+            RequestNotificationPermissionNative();
         }
         // Open app settings if permission was previously denied
         else if (status == PermissionStatus.Denied)
@@ -128,22 +129,45 @@ public class NotificationManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Triggers Android system permission dialog by sending a test notification
+    /// Requests notification permission using native Android API (for Android 13+)
     /// </summary>
-    void TriggerSystemPermissionRequest()
+    void RequestNotificationPermissionNative()
     {
-        // Send test notification to trigger system dialog
-        var notification = new AndroidNotification
+        try
         {
-            Title = "Test",
-            Text = "Checking for the access",
-            SmallIcon = "icon_0",
-            FireTime = System.DateTime.Now.AddSeconds(1)
-        };
+            Debug.Log("Requesting notification permission via native Android API");
 
-        AndroidNotificationCenter.SendNotification(notification, "session_notifications");
+#if UNITY_ANDROID
+            // Get Android API level
+            using (var version = new AndroidJavaClass("android.os.Build$VERSION"))
+            {
+                int sdkInt = version.GetStatic<int>("SDK_INT");
 
-        Debug.Log("System dialog should appear");
+                // Android 13+ (API 33+) requires POST_NOTIFICATIONS permission
+                if (sdkInt >= 33)
+                {
+                    using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+                    using (var currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+                    {
+                        // Request permission using ActivityCompat
+                        string[] permissions = new string[] { "android.permission.POST_NOTIFICATIONS" };
+
+                        currentActivity.Call("requestPermissions", permissions, 1001);
+
+                        Debug.Log("Permission dialog should appear");
+                    }
+                }
+                else
+                {
+                    Debug.Log("Android version below 13, permission not needed");
+                }
+            }
+#endif
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Failed to request permission: {e.Message}");
+        }
     }
 
     /// <summary>
