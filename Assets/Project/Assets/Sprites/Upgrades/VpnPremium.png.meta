@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8e068e6a341d8ca4f824e82b78729a4e
+guid: b5fbdc4c1e20f024bb1b1594d89102ef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -357421434760999972
-    second: Mouse_0
+      213: 153969645496915576
+    second: VpnPremium_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mouse_0
+      name: VpnPremium_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 73
-        width: 893
-        height: 676
+        x: 686
+        y: 680
+        width: 1662
+        height: 2024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cdbc5f9491f2a0bf0800000000000000
-      internalID: -357421434760999972
+      spriteID: 876590aa392032200800000000000000
+      internalID: 153969645496915576
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Mouse_0: -357421434760999972
+      VpnPremium_0: 153969645496915576
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
