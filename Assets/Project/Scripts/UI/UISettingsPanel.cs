@@ -35,6 +35,8 @@ public class UISettingsPanel : MonoBehaviour
         OnVolumeSliderChanged(AudioSourceType.MusicSource, musicVolumeSlider.value, PlayerPrefsValues.MusicVolume);
         OnVolumeSliderChanged(AudioSourceType.SFXSource, sfxVolumeSlider.value, PlayerPrefsValues.SFXVolume);
         OnVolumeSliderChanged(AudioSourceType.UISource, uiVolumeSlider.value, PlayerPrefsValues.UIVolume);
+
+        soundPlayer.StartPlayingMainTheme();
     }
     public void OpenPanel()
     {

@@ -32,6 +32,10 @@ public class SoundPlayer : MonoBehaviour
     {
         PlayKeyboardSFXAsync(volume).Forget();
     }
+    public void StartPlayingMainTheme()
+    {
+        audioSources[AudioSourceType.MusicSource].Play();
+    }
     private async UniTask PlaySFXAsync(SFXType sfxType, float volume, AudioSourceType audioSourceType)
     {
         AudioClip clip = await sfxLoader.GetClipAsync(sfxType);
