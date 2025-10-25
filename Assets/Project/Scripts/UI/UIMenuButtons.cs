@@ -36,7 +36,7 @@ public class UIMenuButtons : MonoBehaviour
 
     private void OnToggleMenuPressed()
     {
-        soundPlayer.PlayUI_SFX(SFXType.UIClick);
+        soundPlayer.PlayUI_SFX(SFXType.UIClick, 0.6f);
 
         float targetSpacing = isMenuOpen ? closedSpacingOfLayout : openSpacingOfLayout;
         Vector3 rotation = isMenuOpen ? Vector3.zero : Vector3.forward * 180;

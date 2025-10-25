@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,9 +13,12 @@ public class UIOfflineEarnings : MonoBehaviour
     [Inject] private BitsBalance bitsBalance;
     [Inject] private SoundPlayer soundPlayer;
     private BigNum currentEarnings;
+    private RectTransform claimButtonRT;
     void Awake()
     {
         gameObject.SetActive(false);
+
+        claimButtonRT = claimButton.GetComponent<RectTransform>();
 
         EventBus.Subscribe<OfflineIncomeInvoke_event>(OnOfflineIncomeInvoke);
         claimButton.onClick.AddListener(ClaimEarnings);
@@ -32,6 +36,9 @@ public class UIOfflineEarnings : MonoBehaviour
         timeOfflineTxt.SetText(offlineTimeFormatted);
         bitsEarnedTxt.SetText($"{currentEarnings} <sprite=0>");
 
+        claimButton.gameObject.SetActive(false);
+        DOVirtual.DelayedCall(1f, ShowClaimButton);
+
         soundPlayer.PlayUI_SFX(SFXType.UIOpenPanelBtn);
 
         gameObject.SetActive(true);
@@ -46,5 +53,13 @@ public class UIOfflineEarnings : MonoBehaviour
         soundPlayer.PlayUI_SFX(SFXType.UICollect);
 
         gameObject.SetActive(false);
+    }
+    private void ShowClaimButton()
+    {
+        claimButtonRT.localScale = Vector3.zero;
+
+        claimButtonRT.gameObject.SetActive(true);
+
+        claimButtonRT.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutCubic);
     }
 }
