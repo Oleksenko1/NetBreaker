@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,12 +56,25 @@ public class UIUpgradePanelUnit : MonoBehaviour
         {
             soundPlayer.PlayUI_SFX(SFXType.UIPurchaseUpgrade);
 
+            PlayPurchaseAnim();
+
             UpdateCostLevelInfo();
         }
         else
         {
             Debug.Log("Not enough money");
         }
+    }
+    private void PlayPurchaseAnim()
+    {
+        var rectTransform = iconImg.rectTransform;
+
+        DOTween.Kill(rectTransform);
+
+        rectTransform.localScale = Vector3.one;
+
+        rectTransform.DOPunchScale(Vector3.one * 0.3f, 0.4f);
+        rectTransform.DOShakeRotation(0.3f, 20);
     }
     private void UpdateCostLevelInfo()
     {
