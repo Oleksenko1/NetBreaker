@@ -17,9 +17,9 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: b5fbdc4c1e20f024bb1b1594d89102ef, type: 3}
   description: +3% to all bits
   startingPrice: 25000
-  priceIncrement: 2.5
+  priceIncrement: 2
   upgradeTypeValues:
-  - type: 0
+  - type: 2
     value:
-      m: 0
+      m: 3
       e: 0

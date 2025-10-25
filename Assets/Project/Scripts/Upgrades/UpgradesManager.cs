@@ -127,6 +127,9 @@ public class UpgradesManager
             case UpgradeType.BitsPerSecondIncrease:
                 clickingStats.AddBitsPerSecond(value);
                 break;
+            case UpgradeType.PercentToAllBits:
+                clickingStats.AddPercentToAllBits(value);
+                break;
             default:
                 Debug.LogError("!!! Upgrade type is not implemented !!!");
                 break;
