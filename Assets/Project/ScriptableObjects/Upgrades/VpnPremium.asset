@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cc55bb4d550db44685dddd17618668e, type: 3}
-  m_Name: MechanicalKeyboard
+  m_Name: VpnPremium
   m_EditorClassIdentifier: 
-  nameLabel: Mechanical keyboard
-  uniqueName: MechanicalKeyboard_upgrade
-  sprite: {fileID: 21300000, guid: bfa7977e5416b3c40a4f2308ae065804, type: 3}
-  description: +2 bits per click
-  startingPrice: 800
-  priceIncrement: 1.25
+  nameLabel: VPN Premium
+  uniqueName: VpnPremium_upgrade
+  sprite: {fileID: 21300000, guid: b5fbdc4c1e20f024bb1b1594d89102ef, type: 3}
+  description: +3% to all bits
+  startingPrice: 25000
+  priceIncrement: 2.5
   upgradeTypeValues:
   - type: 0
     value:
-      m: 2
+      m: 0
       e: 0
