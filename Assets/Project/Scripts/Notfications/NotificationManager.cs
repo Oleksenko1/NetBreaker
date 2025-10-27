@@ -8,9 +8,12 @@ public class NotificationManager : MonoBehaviour
     [SerializeField] private GameObject permissionRequestPanel;
     [SerializeField] private Button acceptBtn;
     [SerializeField] private Button deniedBtn;
+    private NotificationScheduler notificationScheduler;
     void Awake()
     {
         CreateNotificationChannel();
+
+        notificationScheduler = new NotificationScheduler();
     }
     void Start()
     {
@@ -20,13 +23,7 @@ public class NotificationManager : MonoBehaviour
         deniedBtn.onClick.AddListener(OnUserDeclinedExplanation);
 
         CheckAndRequestPermission();
-
-        SendImmediateTestNotification();
     }
-
-    /// <summary>
-    /// Creates a notification channel for Android. Required for Android 8.0+
-    /// </summary>
     void CreateNotificationChannel()
     {
         var channel = new AndroidNotificationChannel()
@@ -38,22 +35,16 @@ public class NotificationManager : MonoBehaviour
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
     }
-
-    /// <summary>
-    /// Checks current permission status and requests if needed
-    /// </summary>
     void CheckAndRequestPermission()
     {
         var status = AndroidNotificationCenter.UserPermissionToPost;
 
-        // Permission already granted - nothing to do
         if (status == PermissionStatus.Allowed)
         {
             Debug.Log("Access is already allowed");
             return;
         }
 
-        // User previously denied permission
         if (status == PermissionStatus.Denied)
         {
             // Check if we already showed our explanation
@@ -64,17 +55,12 @@ public class NotificationManager : MonoBehaviour
             return;
         }
 
-        // Permission not yet requested
         if (status == PermissionStatus.NotRequested)
         {
             // Show explanation BEFORE system dialog
             ShowPermissionExplanation();
         }
     }
-
-    /// <summary>
-    /// Shows custom UI panel explaining why notifications are needed
-    /// </summary>
     void ShowPermissionExplanation()
     {
         if (permissionRequestPanel != null)
@@ -84,10 +70,6 @@ public class NotificationManager : MonoBehaviour
 
         Debug.Log("Showing an explanation why we need notifications");
     }
-
-    /// <summary>
-    /// Called when user clicks "Allow" button on custom UI panel
-    /// </summary>
     public void OnUserAcceptedExplanation()
     {
         // Mark that we asked for permission
@@ -107,23 +89,18 @@ public class NotificationManager : MonoBehaviour
             OpenAppSettings();
         }
 
-        // Hide explanation panel
         if (permissionRequestPanel != null)
         {
             permissionRequestPanel.SetActive(false);
         }
     }
 
-    /// <summary>
-    /// Called when user clicks "Not Now" button on custom UI panel
-    /// </summary>
     public void OnUserDeclinedExplanation()
     {
         // Mark that we asked for permission
         PlayerPrefs.SetInt(PlayerPrefsValues.NotificationPermissionAsked.ToString(), 1);
         PlayerPrefs.Save();
 
-        // Hide explanation panel
         if (permissionRequestPanel != null)
         {
             permissionRequestPanel.SetActive(false);
@@ -132,9 +109,6 @@ public class NotificationManager : MonoBehaviour
         Debug.Log("User declined notifications");
     }
 
-    /// <summary>
-    /// Requests notification permission using native Android API (for Android 13+)
-    /// </summary>
     void RequestNotificationPermissionNative()
     {
         try
@@ -173,10 +147,6 @@ public class NotificationManager : MonoBehaviour
             Debug.LogError($"Failed to request permission: {e.Message}");
         }
     }
-
-    /// <summary>
-    /// Opens Android app settings where user can manually enable notifications
-    /// </summary>
     void OpenAppSettings()
     {
         try
@@ -200,10 +170,6 @@ public class NotificationManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Checks permission status when app returns to foreground
-    /// Useful to detect if user enabled notifications in settings
-    /// </summary>
     void OnApplicationFocus(bool hasFocus)
     {
         if (hasFocus)
@@ -211,39 +177,5 @@ public class NotificationManager : MonoBehaviour
             var status = AndroidNotificationCenter.UserPermissionToPost;
             Debug.Log($"Current access status: {status}");
         }
-    }
-    /// <summary>
-    /// Sends a test notification immediately (5 seconds after call)
-    /// </summary>
-    public void SendImmediateTestNotification()
-    {
-        // Check permission first
-        var status = AndroidNotificationCenter.UserPermissionToPost;
-        if (status != PermissionStatus.Allowed)
-        {
-            Debug.LogWarning("Cannot send test notification - permission not granted");
-            return;
-        }
-
-        const int TEST_NOTIFICATION_ID = 9999;
-
-        // Cancel any previous test notification
-        AndroidNotificationCenter.CancelScheduledNotification(TEST_NOTIFICATION_ID);
-
-        // Create test notification
-        var testNotification = new AndroidNotification
-        {
-            Title = "TEST: Notification Working!",
-            Text = "Your notification system is set up correctly!",
-            SmallIcon = "icon_0",
-            LargeIcon = "icon_1",
-            FireTime = System.DateTime.Now.AddSeconds(1),
-            ShowTimestamp = true
-        };
-
-        // Schedule test notification
-        AndroidNotificationCenter.SendNotification(testNotification, "session_notifications");
-
-        Debug.Log($"TEST notification scheduled for: {testNotification.FireTime}");
     }
 }
