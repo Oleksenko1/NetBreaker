@@ -8,7 +8,10 @@ public class NotificationManager : MonoBehaviour
     [SerializeField] private GameObject permissionRequestPanel;
     [SerializeField] private Button acceptBtn;
     [SerializeField] private Button deniedBtn;
-
+    void Awake()
+    {
+        CreateNotificationChannel();
+    }
     void Start()
     {
         permissionRequestPanel.SetActive(false);
@@ -16,8 +19,9 @@ public class NotificationManager : MonoBehaviour
         acceptBtn.onClick.AddListener(OnUserAcceptedExplanation);
         deniedBtn.onClick.AddListener(OnUserDeclinedExplanation);
 
-        CreateNotificationChannel();
         CheckAndRequestPermission();
+
+        SendImmediateTestNotification();
     }
 
     /// <summary>
@@ -207,5 +211,39 @@ public class NotificationManager : MonoBehaviour
             var status = AndroidNotificationCenter.UserPermissionToPost;
             Debug.Log($"Current access status: {status}");
         }
+    }
+    /// <summary>
+    /// Sends a test notification immediately (5 seconds after call)
+    /// </summary>
+    public void SendImmediateTestNotification()
+    {
+        // Check permission first
+        var status = AndroidNotificationCenter.UserPermissionToPost;
+        if (status != PermissionStatus.Allowed)
+        {
+            Debug.LogWarning("Cannot send test notification - permission not granted");
+            return;
+        }
+
+        const int TEST_NOTIFICATION_ID = 9999;
+
+        // Cancel any previous test notification
+        AndroidNotificationCenter.CancelScheduledNotification(TEST_NOTIFICATION_ID);
+
+        // Create test notification
+        var testNotification = new AndroidNotification
+        {
+            Title = "TEST: Notification Working!",
+            Text = "Your notification system is set up correctly!",
+            SmallIcon = "icon_0",
+            LargeIcon = "icon_1",
+            FireTime = System.DateTime.Now.AddSeconds(1),
+            ShowTimestamp = true
+        };
+
+        // Schedule test notification
+        AndroidNotificationCenter.SendNotification(testNotification, "session_notifications");
+
+        Debug.Log($"TEST notification scheduled for: {testNotification.FireTime}");
     }
 }
