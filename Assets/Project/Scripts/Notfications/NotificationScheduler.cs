@@ -3,15 +3,18 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
-public class NotificationScheduler
+
+public class NotificationScheduler : MonoBehaviour
 {
     private const string CHANNEL_ID = "session_notifications";
     private const int NOTIFICATION_ID = 2001;
     private CancellationTokenSource _cancellationTokenSource;
-    public NotificationScheduler()
+
+    void Start()
     {
         StartNotificationLoop().Forget();
     }
+
     private async UniTaskVoid StartNotificationLoop()
     {
         _cancellationTokenSource = new CancellationTokenSource();
@@ -23,10 +26,6 @@ public class NotificationScheduler
                 if (HasNotificationPermission())
                 {
                     ScheduleNotificationInMaxHours();
-                }
-                else
-                {
-                    // Debug.Log("No notification permission - skipping schedule");
                 }
 
                 await UniTask.Delay(TimeSpan.FromSeconds(2), cancellationToken: _cancellationTokenSource.Token);
@@ -41,6 +40,7 @@ public class NotificationScheduler
             Debug.LogError($"Error in notification loop: {e.Message}");
         }
     }
+
     private void ScheduleNotificationInMaxHours()
     {
         AndroidNotificationCenter.CancelScheduledNotification(NOTIFICATION_ID);
@@ -55,21 +55,19 @@ public class NotificationScheduler
 
         AndroidNotificationCenter.SendNotification(notification, CHANNEL_ID);
 
-        Debug.Log($"Notification scheduled for: {notification.FireTime}");
-
-        ScheduleTestNotification();
+        Debug.Log($"Main notification scheduled for: {notification.FireTime}");
     }
 
     private void ScheduleTestNotification()
     {
-        const int TEST_NOTIFICATION_ID = 9999; // Different ID so it doesn't conflict with main notification
+        const int TEST_NOTIFICATION_ID = 9999;
 
         AndroidNotificationCenter.CancelScheduledNotification(TEST_NOTIFICATION_ID);
 
         var testNotification = new AndroidNotification
         {
             Title = "TEST: Notification Working!",
-            Text = "This is a test notification sent 1 minutes after last session.",
+            Text = "This is a test notification sent 1 minute after last session.",
             FireTime = DateTime.Now.AddMinutes(1),
             ShowTimestamp = true
         };
@@ -78,11 +76,13 @@ public class NotificationScheduler
 
         Debug.Log($"TEST notification scheduled for: {testNotification.FireTime}");
     }
+
     private bool HasNotificationPermission()
     {
         var status = AndroidNotificationCenter.UserPermissionToPost;
         return status == PermissionStatus.Allowed;
     }
+
     public void StopNotificationLoop()
     {
         _cancellationTokenSource?.Cancel();
@@ -95,6 +95,37 @@ public class NotificationScheduler
     public void CancelAllNotifications()
     {
         AndroidNotificationCenter.CancelScheduledNotification(NOTIFICATION_ID);
+        AndroidNotificationCenter.CancelScheduledNotification(9999);
         Debug.Log("All notifications cancelled");
+    }
+
+    // Handle app going to background/foreground
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            // App going to background - schedule final notification and STOP loop
+            Debug.Log("App paused - scheduling final notification");
+
+            if (HasNotificationPermission())
+            {
+                ScheduleNotificationInMaxHours();
+                ScheduleTestNotification(); // ADD test notification
+            }
+
+            StopNotificationLoop(); // Stop the loop when app goes to background
+        }
+        else
+        {
+            Debug.Log("App resumed - cancelling notifications and restarting loop");
+
+            CancelAllNotifications();
+
+            StartNotificationLoop().Forget();
+        }
+    }
+    void OnDestroy()
+    {
+        StopNotificationLoop();
     }
 }

@@ -8,12 +8,9 @@ public class NotificationManager : MonoBehaviour
     [SerializeField] private GameObject permissionRequestPanel;
     [SerializeField] private Button acceptBtn;
     [SerializeField] private Button deniedBtn;
-    private NotificationScheduler notificationScheduler;
     void Awake()
     {
         CreateNotificationChannel();
-
-        notificationScheduler = new NotificationScheduler();
     }
     void Start()
     {
@@ -23,6 +20,8 @@ public class NotificationManager : MonoBehaviour
         deniedBtn.onClick.AddListener(OnUserDeclinedExplanation);
 
         CheckAndRequestPermission();
+        RequestBatteryOptimizationExemption();
+        RequestExactAlarmPermission();
     }
     void CreateNotificationChannel()
     {
@@ -32,6 +31,10 @@ public class NotificationManager : MonoBehaviour
             Name = "Session Notifications",
             Importance = Importance.High,
             Description = "Reminder to return to the game",
+            CanBypassDnd = true,
+            CanShowBadge = true,
+            EnableLights = true,
+            EnableVibration = true
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
     }
@@ -146,6 +149,85 @@ public class NotificationManager : MonoBehaviour
         {
             Debug.LogError($"Failed to request permission: {e.Message}");
         }
+    }
+    void RequestBatteryOptimizationExemption()
+    {
+#if UNITY_ANDROID
+        try
+        {
+            using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            using (var currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+            using (var powerManager = currentActivity.Call<AndroidJavaObject>("getSystemService", "power"))
+            {
+                string packageName = currentActivity.Call<string>("getPackageName");
+                bool isIgnoringBatteryOptimizations = powerManager.Call<bool>("isIgnoringBatteryOptimizations", packageName);
+
+                if (!isIgnoringBatteryOptimizations)
+                {
+                    Debug.LogWarning("Battery optimization is ON - requesting exemption");
+
+                    using (var intent = new AndroidJavaObject("android.content.Intent"))
+                    using (var uri = new AndroidJavaClass("android.net.Uri"))
+                    {
+                        intent.Call<AndroidJavaObject>("setAction", "android.settings.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS");
+                        AndroidJavaObject uriObj = uri.CallStatic<AndroidJavaObject>("parse", "package:" + packageName);
+                        intent.Call<AndroidJavaObject>("setData", uriObj);
+                        currentActivity.Call("startActivity", intent);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Battery optimization already disabled");
+                }
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Failed to request battery optimization exemption: {e.Message}");
+        }
+#endif
+    }
+    void RequestExactAlarmPermission()
+    {
+#if UNITY_ANDROID
+        try
+        {
+            using (var version = new AndroidJavaClass("android.os.Build$VERSION"))
+            {
+                int sdkInt = version.GetStatic<int>("SDK_INT");
+
+                // Android 12+ (API 31+) requires SCHEDULE_EXACT_ALARM permission
+                if (sdkInt >= 31)
+                {
+                    using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+                    using (var currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+                    using (var alarmManager = currentActivity.Call<AndroidJavaObject>("getSystemService", "alarm"))
+                    {
+                        bool canScheduleExact = alarmManager.Call<bool>("canScheduleExactAlarms");
+
+                        if (!canScheduleExact)
+                        {
+                            Debug.LogWarning("Exact alarm permission not granted - opening settings");
+
+                            using (var intent = new AndroidJavaObject("android.content.Intent"))
+                            {
+                                intent.Call<AndroidJavaObject>("setAction", "android.settings.REQUEST_SCHEDULE_EXACT_ALARM");
+                                currentActivity.Call("startActivity", intent);
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("Exact alarm permission already granted");
+                        }
+                    }
+                }
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Failed to request exact alarm permission: {e.Message}");
+        }
+#endif
     }
     void OpenAppSettings()
     {
